@@ -38,8 +38,8 @@
 		05DC15372255ADFD00F5E12B = {
 			isa = PBXGroup;
 			children = (
-				05DC15422255ADFD00F5E12B /* UITextField Test 03 */,
 				05DC15412255ADFD00F5E12B /* Products */,
+				05DC15422255ADFD00F5E12B /* UITextField Test 03 */,
 			);
 			sourceTree = "<group>";
 		};

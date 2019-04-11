@@ -1,13 +1,7 @@
-//
-//  ViewController.swift
-//  UITextField Test 03
-//
-//  Created by 김종현 on 04/04/2019.
-//  Copyright © 2019 김종현. All rights reserved.
-//
 
 import UIKit
-// 1
+
+// 1. Delegate 객체상속
 class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var myTextField: UITextField!
@@ -16,30 +10,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-       // 2.
+       // 2. delegate 객체의 ViewController 객체 연결
         myTextField.delegate = self
         myTextField.clearButtonMode = UITextField.ViewMode.always
+        myTextField.placeholder = "숫자를 입력하세용!" //미리 입력되어있는 글자
     }
 
     @IBAction func buttonPressed(_ sender: Any) {
+        print(myTextField.text!)
         let inString = myTextField.text
-        print(inString!)
-        myLabel.text = inString
+        let outString = inString! + "Coding"
+        myLabel.text = outString
         myTextField.text = ""
         myTextField.resignFirstResponder()
     }
     
     // delegate method
      // called when 'return' key pressed. return NO to ignore.
-    // 3.
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        myTextField.resignFirstResponder()
+    // 3. 키보드를 강제적으로 내림
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)       //background에서 tab 을하면 내려감
         myTextField.backgroundColor = UIColor.yellow
-        return true
+        view.backgroundColor = UIColor.green
     }
     
+    // called when clear button pressed. return NO to ignore.(no notifications)
     public func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        view.backgroundColor = UIColor.green
+        myTextField.backgroundColor = UIColor.lightGray
         return true
     }
     
